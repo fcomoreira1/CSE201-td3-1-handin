@@ -9,8 +9,9 @@
  * The main function in main.cpp runs the automatic grader by default (this is
  * what you need to run while writing your solutions).
  *
- * The value of the macro GRADING defines what code is executed in the main function.
- * If the value is 1 the program runs the automatic grading of the assignment.
+ * The value of the macro GRADING defines what code is executed in the main
+ * function. If the value is 1 the program runs the automatic grading of the
+ * assignment.
  *
  * If the value is 0 (or more precisely, different from 1) the program runs the
  * code in the custom code section below (between the #if GRADING != 1 and
@@ -22,32 +23,31 @@
 
 #define GRADING 1
 
-#include <iostream>
 #include "grading/grading.hpp"
 #include "td3.hpp"
+#include <iostream>
 
 using namespace std;
 
-int main(int argc, char* argv[])
-{
-#if GRADING != 1
-  // START OF THE CUSTOM CODE SECTION
-  // This code will be executed only if you set GRADING to a value different from 1
+int main(int argc, char *argv[]) {
+#if GRADING != 0
+    // START OF THE CUSTOM CODE SECTION
+    // This code will be executed only if you set GRADING to a value different
+    // from 1
 
-  {
-  }
-  // END OF THE CUSTOM CODE SECTION
+    {}
+    // END OF THE CUSTOM CODE SECTION
 #else
-  // RUN THE AUTOMATIC GRADER
-  {
-    int test_number = 0; // run all the tests
+    // RUN THE AUTOMATIC GRADER
+    {
+        int test_number = 0; // run all the tests
 
-    if (argc == 2) {
-      test_number = stoi(argv[1]);
+        if (argc == 2) {
+            test_number = stoi(argv[1]);
+        }
+
+        return tdgrading::grading(std::cerr, test_number);
+        // END OF THE AUTOMATIC GRADER
     }
-
-    return tdgrading::grading(std::cerr, test_number);
-    // END OF THE AUTOMATIC GRADER
-  }
 #endif
 }
